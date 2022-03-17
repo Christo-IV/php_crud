@@ -4,6 +4,9 @@ namespace App;
 
 class App
 {
+    public $props = [];
+    public $view = "";
+
     public function __construct($method, $request_uri, $script_name)
     {
         $path = parse_url($request_uri, PHP_URL_PATH);
@@ -12,10 +15,14 @@ class App
         $path = substr($path, strlen(PROJECT_DIRECTORY));
         $path = explode("/", $path);
         $path = array_values(array_filter($path));
+        $path = empty($path) ? ["actors"] : $path;
 
+        $this->controller = $path[0];
         $this->endpoint = implode("/", $path);
         $this->requestBody = file_get_contents("php://input");
         $this->requestMethod = $method;
+
+        DB::connect();
     }
 
     function __call($methodFunctionName, $args)
@@ -24,7 +31,9 @@ class App
         $closure = $args[1];
 
         if ($methodFunctionName == strtolower($this->requestMethod) && preg_match($pattern, $this->endpoint, $matches)) {
-            $view = $closure($matches, $this->requestBody);
+            $this->queryParams = $matches;
+            $closure($this);
+            $this->render();
         }
     }
 
@@ -38,10 +47,11 @@ class App
         }
     }
 
-    function render($view, $params)
+    function render()
     {
-        extract($params);
-        include("templates/master_template.php");
+        extract((array) $this);
+        extract($this->props);
+        include("views/templates/master_template.php");
     }
 
     private function get_base_url()

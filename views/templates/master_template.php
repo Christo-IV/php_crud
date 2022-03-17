@@ -20,10 +20,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link <?= $view === "actors" ? "active" : "" ?>" aria-current="page" href="actors">Actors</a>
+                    <a class="nav-link <?= $controller === "actors" ? "active" : "" ?>" aria-current="page" href="actors">Actors</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?= $view === "movies" ? "active" : "" ?>" aria-current="page" href="movies">Movies</a>
+                    <a class="nav-link <?= $controller === "movies" ? "active" : "" ?>" aria-current="page" href="movies">Movies</a>
                 </li>
             </ul>
         </div>

@@ -2,7 +2,7 @@
     "name": "christo/crud_php",
     "autoload": {
         "psr-4": {
-            "App\\": "classes"
+            "App\\": "models"
         }
     },
     "authors": [
@@ -11,5 +11,7 @@
             "email": "christo.vahtramae@voco.ee"
         }
     ],
-    "require": {}
+    "require": {
+      "ext-mysqli": "*"
+    }
 }

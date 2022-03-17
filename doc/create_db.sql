@@ -23,10 +23,10 @@ DROP TABLE IF EXISTS `actors`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `actors` (
-  `actor_id` int(11) NOT NULL AUTO_INCREMENT,
-  `actor_name` varchar(100) DEFAULT NULL,
-  `actor_dob` date DEFAULT NULL,
-  PRIMARY KEY (`actor_id`)
+                          `actor_id` int(11) NOT NULL AUTO_INCREMENT,
+                          `actor_name` varchar(100) DEFAULT NULL,
+                          `actor_dob` date DEFAULT NULL,
+                          PRIMARY KEY (`actor_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -39,6 +39,31 @@ LOCK TABLES `actors` WRITE;
 INSERT INTO `actors` VALUES (1,'Dave Johnson','2022-03-15');
 /*!40000 ALTER TABLE `actors` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `movies`
+--
+
+DROP TABLE IF EXISTS `movies`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `movies` (
+                          `movie_id` int(11) NOT NULL AUTO_INCREMENT,
+                          `movie_name` varchar(100) DEFAULT NULL,
+                          `movie_release_date` date DEFAULT NULL,
+                          PRIMARY KEY (`movie_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `movies`
+--
+
+LOCK TABLES `movies` WRITE;
+/*!40000 ALTER TABLE `movies` DISABLE KEYS */;
+INSERT INTO `movies` VALUES (1,'A very exciting movie','2022-04-05'),(2,'The Good the Bad and the Ugly','1966-03-02');
+/*!40000 ALTER TABLE `movies` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -49,4 +74,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-03-17 13:35:00
+-- Dump completed on 2022-03-17 14:14:12

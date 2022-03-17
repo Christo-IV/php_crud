@@ -22,6 +22,9 @@
                 <li class="nav-item">
                     <a class="nav-link <?= $view === "actors" ? "active" : "" ?>" aria-current="page" href="actors">Actors</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link <?= $view === "movies" ? "active" : "" ?>" aria-current="page" href="movies">Movies</a>
+                </li>
             </ul>
         </div>
     </div>

@@ -34,6 +34,15 @@ class DB
         return $result;
     }
 
+    static function query($sql)
+    {
+        try {
+            mysqli_query(DB::$connection, $sql);
+        } catch (\Exception $e) {
+            DB::errorOut($sql);
+        }
+    }
+
     static function errorOut($sql)
     {
         $error = mysqli_error(DB::$connection);
@@ -91,5 +100,20 @@ class DB
         }
 
         return $where;
+    }
+
+    public static function insert(string $table, array $data)
+    {
+        $columns = implode(",", array_keys($data));
+
+        // Escape values
+        $values = array_map(function($value) {
+            return addslashes($value);
+        }, array_values($data));
+
+        $values = "'".implode("','", array_values($data))."'";
+
+        DB::query("INSERT INTO $table ($columns) VALUES ($values)");
+        return mysqli_insert_id(DB::$connection);
     }
 }
